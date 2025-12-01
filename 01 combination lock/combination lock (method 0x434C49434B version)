@@ -1,0 +1,53 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+//i just gave up on making the output look pretty for this one
+
+int main(){
+    ifstream combination("fakepassword.txt");
+    string rotation;
+    int dial = 50;
+    int count = 0;
+    while(getline(combination, rotation)){
+        char direction = rotation[0];
+        string distanceStr = "";
+        for(int i = 1; i < rotation.length(); i++){
+            distanceStr = distanceStr + rotation[i];
+        }
+        int distance = stoi(distanceStr);
+        while(distance >= 100){
+            distance -= 100;
+            count++;
+            //cout << "dial completely rotated; +1 click" << endl;
+        }
+        if(direction == 'L'){
+            if(dial == 0){
+                dial = 100; //bugfix
+            }
+            //cout << "rotate left " << distance << " notches; new position ";
+            dial -= distance;
+            //cout << dial << endl;
+            if(dial <= 0){
+                count++;
+                //cout << "passed or landed on 0; +1 click" << endl;
+                if(dial < 0){
+                    dial += 100;
+                }
+            }
+        }
+        else if(direction == 'R'){
+            //cout << "rotate right " << distance << " notches; new position ";
+            dial += distance;
+            //cout << dial << endl;
+            if(dial >= 100){
+                count++;
+                //cout << "passed or landed on 0; +1 click" << endl;
+                dial -= 100;
+            }
+        }
+    }
+    cout << "true password (for real this time): " << count << endl;
+    return 0;
+}
