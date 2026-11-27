@@ -7,7 +7,7 @@ potential employers want to see something like that.
 ---
 
 Should be pretty clear how I have this organized; there's 12 numbered folders for each day, with titles added to describe the puzzles. Each folder contains the C++ code 
-for both of my solutions, as well as any extra files I used for input.
+for any solutions I found, as well as any extra files I used for input.
 
 ---
 
